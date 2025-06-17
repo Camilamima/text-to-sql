@@ -1,0 +1,102 @@
+Tabelas:
+classroom{(tabela de classes, com as colunas:
+	building(varchar) - Nome do prédio da aula
+	room_number(varchar) - numero da sala
+	capacity(numeric(4,0) - capacidade da sala
+	Primary Key(building,room_number)}
+
+department{tabela dos departamentos da universidade, com as colunas:
+	dept_name(varchar) - nome do departamento
+	building(varchar) - nome do prédio
+	budget(numeric(12,2)) - orçamento do departamento
+	Primary Key(dept_name)
+}
+
+course{(essa é a tabela de cursos, com as seguintes colunas:
+	course_id(varchar) - Id do curso
+	title(varchar) - titulo curso
+	dept_name(varchar( - nome do departamento
+	credits(numeric(2,0) - quantidade de créditos disponíveis
+	Primary Key(course_id),
+	foreign key(dept_name) referencia department.dept_name
+}
+
+instructor{(tabela dos instrutores, com as colunas:
+	ID(varchar) - id dos instrutores
+	name(varchar) - o nome
+	dept_name(varchar) - departamento do instrutor
+	salary(numeric) - Salario do instrutor
+	primary key(ID),
+	foreign key (dept_name) referencia department.dept_name
+}
+
+section{tabela de "turmas" dos cursos, com as colunas:
+	course_id(varchar)-id do curso
+	sec_id(varchar)-id da turma
+	semester(varchar) - o semestre da turma
+	year(numeric(4,0))- ano da turma
+	building(varchar)-o nome do prédio da turma
+	room_number(varchar)-o numero da sala da turma
+	time_slot_id(varchar)- qual o time slot da turma
+	Primary Key(course_id,sec_id,semester,year)
+	foreign key(course_id) referencia course.course_id)
+	foreign key(building,room_number) referencia classroom.building e classroom.room_number}
+
+teaches{tabela de informações sobre o que os instrutores ensinam:
+	ID(varchar) - id da tabela
+	course_id(varchar) - o curso que ensina
+	sec_id(varchar)- o id da turma que ensina
+	semester(varchar) - o semestre
+	year(numeric) - o ano que ensinou
+	Primary Key(ID,course_id,sec_id,semester,year)	
+	Foreign key(course_id,sec_id,semester,year), referencia: section.course_id,section.sec_id,section.semester,section.id
+Foreign Key referencia instructor.ID
+}
+
+student{tabela de estudantes, com as seguintes colunas:
+	ID(varchar) - id do estudante
+	name(varchar) - nome do estudante
+	dept_name(varchar) - departamento do estudante
+	tot_cred(numeric)- o total de créditos do estudante
+	primary key(ID),
+	foreign key(dept_name) references department.dept_name
+}
+
+takes{tabela de quais cursos certo aluno está pegando:
+	ID(varchar) - id da tabela takes
+	course_id(varchar) - id do curso		
+	sec_id(varchar)-id da turma
+	semester(varchar) - semestre
+	year(numeric) - ano
+	grade(varchar)- a nota do aluno nesse curso/turma
+	primary kei(ID,course_id,sec_id,semester,year)
+	foreign key(course_id,sec_id,semester,year) referenciam section.course_id,section.sec_id,section.semester,section.year
+foreign key(ID) referencia student.ID}
+
+advisor{(qual professor é o conselheiro de qual aluno, as colunas são:
+	s_ID(varchar)-id do estudante
+	i_ID(varchar)-id do instrutor
+	primary key(s_id)
+	foreign key(i_ID) referencia instructor.ID)}
+
+time_slot{(tabela com os intervalos de tempo, as colunas são:
+	time_slot_id(varchar)-o id do intervalo
+	day(varchar) - o dia desse intervalo
+	start_hr(numeric(2))-horário que começa
+	start min(numeric(2))-minutos que começa
+	end_hr(numeric(2))-hora que termina
+	end_min(numeric(2))-minuto que termina)
+	primary_key(time_slot_id,day,start_hr,start_min)
+	
+
+prereq {(tabela de pre-requisitos, com as seguintes colunas:
+	course_id(varchar) - Id do curso
+	prereq_id(varchar)- Id do pré-requisito do curso
+	primary key(course_id,prereq_id)
+	foreign key(course_id) referencia course.course_id
+	foreign key(prereq_id) referencia course.course_id
+}
+
+
+Agora, baseado nesse esquema que te passei gemma, quero que você me mande SOMENTE EM SQL, SOMENTE O CÓDIGO EM SQL, a seguinte frase: 
+ 
