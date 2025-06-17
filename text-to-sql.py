@@ -8,7 +8,7 @@ warnings.filterwarnings("ignore", message="pandas only supports SQLAlchemy conne
 
 #conexão ao Groq
 client = Groq(
-    api_key="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",
+    api_key="",
 )
 
 #escolha de banco de dados
