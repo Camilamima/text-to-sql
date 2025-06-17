@@ -99,18 +99,4 @@ while(opcao!=4):
 
 
 
-"""
-pergunta=input("digite a pergunta:")
-
-resposta: ChatResponse = chat(model='gemma3',
-                              messages=[{
-                                  'role':'user',
-                                  'content':pergunta
-                              },]
-)
-
-print(resposta['message']['content'])
-
-
-"""
 
