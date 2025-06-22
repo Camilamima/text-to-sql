@@ -12,7 +12,7 @@ schema="https://github.com/Camilamima/text-to-sql/blob/main/banco_de_dados.jpg?r
 
 ####conexão ao Groq####
 client = Groq(
-    api_key="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",
+    api_key="-----",
 )
 
 ####Escolha de banco de dados####
