@@ -136,9 +136,3 @@ while(opcao!=4):
             webbrowser.open(schema)
 
 conexao.close()
-
-
-
-
-
-
