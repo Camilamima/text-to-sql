@@ -105,17 +105,17 @@ while(opcao!=4):
             ##Printa a query##
             query=chat_resposta.choices[0].message.content
             query = query.replace("```sql", "").replace("```", "").strip()
-            print("\n",query)
+            print("\n",query,"\n")
 
             if(query.strip() =="1"):
-                print("\nPergunta não relacionada ao banco de dados\n")
+                print("Pergunta não relacionada ao banco de dados\n")
 
             elif("SELECT" in query.upper()):
                 try:
                     df=pd.read_sql(query,conexao)
                     print(df)
                 except Exception as error:
-                    print("Ocorreu um erro,query errada")
+                    print("Ocorreu um erro ao executar a query:", error)
 
             elif("DELETE" in query.upper()):
                 print("A query de exclusão não é permitida")
@@ -129,10 +129,9 @@ while(opcao!=4):
                     print("Query executada com sucesso")
                 except Exception as error:
                     print("Ocorreu um erro ao executar a query:", error)
+                    conexao.rollback()
             
            
-
-
         case 3:#abre imagem com schema
             webbrowser.open(schema)
 
