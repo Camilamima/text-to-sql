@@ -4,7 +4,7 @@
 Este projeto cria uma conversão de linguagem natural para SQL utilizando LLM. Projeto feito para a matéria de Banco de Dados da UTFPR.
 
 ## 🔧 Tecnologias Utilizadas
-- Python 3.8+
+- Python 3.13+
 - MySql
 - PostgreSQL
   ###  🐛 Bibliotecas python:
