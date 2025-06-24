@@ -55,7 +55,7 @@ elif(bd==2):
 opcao=0
 
 while(opcao!=4):
-    opcao=int(input("Você deseja:\n1-Ver tabelas disponiveis.\n2-Fazer uma consulta em linguagem natural\n3-Ver Schema\n4-Sair\n"))
+    opcao=int(input("Você deseja:\n1-Ver tabelas disponiveis.\n2-Converter linguagem natural em query\n3-Ver Schema\n4-Sair\n"))
 
     match opcao:
         case 1: #Printra todas as tabelas atrávez de um looping
@@ -67,8 +67,10 @@ while(opcao!=4):
                 query_tabelas="SELECT table_name FROM information_schema.tables WHERE table_schema = 'public';"
             
             cursor.execute(query_tabelas)
-            tabelas = [t[0] for t in query_tabelas]
-                
+
+            tabelas = [t[0] for t in cursor.fetchall()]
+
+            #printa todas as tabelas disponíveis   
             for i in tabelas:
                 query=f"SELECT * FROM {i} LIMIT 3"
                 df=pd.read_sql(query,conexao)
@@ -102,9 +104,9 @@ while(opcao!=4):
             )
             
             
-            ##Printa a query##
+            ##Converte em string e limpa a query##
             query=chat_resposta.choices[0].message.content
-            query = query.replace("```sql", "").replace("```", "").strip()
+            query = query.replace("```sql", "").replace("```", "").strip()#as vezes o modelo retorna com ```sql''' ???
             print("\n",query,"\n")
 
             if(query.strip() =="1"):
@@ -117,11 +119,15 @@ while(opcao!=4):
                 except Exception as error:
                     print("Ocorreu um erro ao executar a query:", error)
 
-            elif("DELETE" in query.upper()):
-                print("A query de exclusão não é permitida")
+            elif("DROP" in query.upper()):
+                print("A query de drop não é permitida")
+
+            elif("DELETE" in query.upper() and "WHERE" not in query.upper()):
+                print("Hoje não é dia de delete sem where")
 
             elif("UPDATE" in query.upper() and "WHERE" not in query.upper()):
                 print("Hoje não é dia de update sem where")
+                
             else:
                 try:
                     cursor.execute(query)
@@ -134,5 +140,6 @@ while(opcao!=4):
            
         case 3:#abre imagem com schema
             webbrowser.open(schema)
-
+            
+cursor.close()
 conexao.close()
