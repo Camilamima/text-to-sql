@@ -20,7 +20,7 @@ Este projeto cria uma conversão de linguagem natural para SQL utilizando LLM. P
 ### Pré-requisitos
 - Crie um servidor MySQL e Potsgre dentro do seu computador
 - Instale as blibliotecas necessárias com o comando: pip install "bliblioteca aqui".
-- No site da groq, crie uma conta e crie sua api aqui:
+- No site da groq(https://console.groq.com/home), crie uma conta e crie sua api aqui:
   <img width="820" alt="image" src="https://github.com/user-attachments/assets/2df5a19b-bed5-4f00-bf18-2fef04d21462" />
 
 - Crie o banco de dados usando os comandos SQL(tanto no MySQL quanto no Postgre) presentes aqui: (https://db-book.com/university-lab-dir/sample_tables-dir/index.html)
